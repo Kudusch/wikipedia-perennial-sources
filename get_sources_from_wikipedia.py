@@ -26,6 +26,7 @@ def get_links_from_infobox(u):
         offical_websites = [a.get("href") for a in list(chain(*[span.find_all("a") for span in offical_websites]))]
     except:
         offical_websites = []
+    
 
     links = list(chain(*[info_links, offical_websites]))
     links = [re.sub(r"^https?:\/\/", "", l) for l in links]
@@ -45,23 +46,32 @@ for row in html_table.find_all("tr"):
     cells = row.find_all("td")
     try:
         source["name"] = cells[0].find_all("a")[0].get_text()
+        try:
+            source["name"] = source["name"] + " " + re.findall(r"\(.*\)", cells[0].get_text())[0]
+        except:
+            pass
         print("Getting info for {}".format(source["name"]))
-        source["status"] =  json.dumps([a.get('title') for a in cells[1].find_all("a")])
+        source["status"] =  [a.get('title') for a in cells[1].find_all("a")]
         source["info"] = cells[4].get_text()
         source["wiki_url"] = "https://en.wikipedia.org" + cells[0].find_all("a")[0].get("href")
-        source["urls"] = json.dumps(get_links_from_infobox(source["wiki_url"]))
+        source["urls"] = get_links_from_infobox(source["wiki_url"])
         all_sources.append(source)
-    except:
-        pass
+    except Exception as e:
+        print(e)
 
 with open("perennial-sources.csv", "w") as f:
     writer = csv.writer(f)
-    writer.writerow(["name", "status", "wiki_url", "urls", "info"])
+    writer.writerow(["id", "name", "status", "status_n", "wiki_url", "urls", "urls_n", "info"])
+    n = 1
     for s in all_sources:
         writer.writerow([
+            n,
             s["name"], 
-            s["status"], 
+            json.dumps(s["status"]),
+            len(s["status"]),
             s["wiki_url"], 
-            s["urls"],
+            json.dumps(s["urls"]),
+            len(s["urls"]),
             s["info"],
-    ])
+        ])
+        n += 1
