@@ -8,7 +8,7 @@ The file `perennial-sources.csv` contains all entries from the above list, inclu
 
 This should be seen as a staring point and should be validated by human coders before use. Please see the [article](https://en.wikipedia.org/wiki/Wikipedia:Reliable_sources/Perennial_sources) for an explanation of the different reliability statuses. An “unreliable” source might not exclusively contain misinformation or be operated by malicious actors. For example, the Wikipedia itself is categorized as unreliable (“Wikipedia is not a reliable source because open wikis are self-published sources”).
 
-The list was generated on 2021-03-17 and is shared under [Creative Commons Attribution-ShareAlike](https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License).
+The list was generated on 2026-10-28 and is shared under [Creative Commons Attribution-ShareAlike](https://en.wikipedia.org/wiki/Wikipedia:Text_of_Creative_Commons_Attribution-ShareAlike_3.0_Unported_License).
 
 ## Usage example
 
